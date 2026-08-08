@@ -1,0 +1,219 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: images
+public_folder: images
+collections:
+  - name: "content"
+    label: "Website Content"
+    files:
+      - name: "nl"
+        label: "Nederlandse Tekst"
+        file: "content/nl.json"
+        format: json
+        fields:
+          - { label: "Nav: Restaurant", name: "nav_restaurant", widget: "string", required: false }
+          - { label: "Nav: Catering", name: "nav_catering", widget: "string", required: false }
+          - { label: "Nav: Tuin", name: "nav_garden", widget: "string", required: false }
+          - { label: "Nav: Over ons", name: "nav_about", widget: "string", required: false }
+          - { label: "Nav: Contact", name: "nav_contact", widget: "string", required: false }
+          - { label: "Home: Locatie (hero)", name: "home_hero_location", widget: "string", required: false }
+          - { label: "Home: Over ons titel", name: "home_about_heading", widget: "string", required: false }
+          - { label: "Home: Over ons tekst", name: "home_about_body", widget: "text", required: false }
+          - { label: "Home: Over ons link", name: "home_about_link", widget: "string", required: false }
+          - { label: "Home: Restaurant titel", name: "home_restaurant_heading", widget: "string", required: false }
+          - { label: "Home: Restaurant tekst", name: "home_restaurant_body", widget: "text", required: false }
+          - { label: "Home: Stories label", name: "home_stories_label", widget: "string", required: false }
+          - { label: "Home: Tuin titel", name: "home_garden_heading", widget: "string", required: false }
+          - { label: "Home: Tuin tekst", name: "home_garden_body", widget: "text", required: false }
+          - { label: "Home: Tuin link", name: "home_garden_link", widget: "string", required: false }
+          - { label: "Restaurant: Hero titel", name: "restaurant_hero_heading", widget: "string", required: false }
+          - { label: "Restaurant: Hoe werkt het label", name: "restaurant_how_label", widget: "string", required: false }
+          - { label: "Restaurant: Stap 1 titel", name: "restaurant_step1_title", widget: "string", required: false }
+          - { label: "Restaurant: Stap 1 tekst", name: "restaurant_step1_body", widget: "text", required: false }
+          - { label: "Restaurant: Stap 2 titel", name: "restaurant_step2_title", widget: "string", required: false }
+          - { label: "Restaurant: Stap 2 tekst", name: "restaurant_step2_body", widget: "text", required: false }
+          - { label: "Restaurant: Stap 3 titel", name: "restaurant_step3_title", widget: "string", required: false }
+          - { label: "Restaurant: Stap 3 tekst", name: "restaurant_step3_body", widget: "text", required: false }
+          - { label: "Restaurant: Maat klein", name: "restaurant_size_small", widget: "string", required: false }
+          - { label: "Restaurant: Maat middel", name: "restaurant_size_medium", widget: "string", required: false }
+          - { label: "Restaurant: Maat groot", name: "restaurant_size_large", widget: "string", required: false }
+          - { label: "Restaurant: Stories titel", name: "restaurant_stories_heading", widget: "string", required: false }
+          - { label: "Restaurant: Stories tekst", name: "restaurant_stories_body", widget: "text", required: false }
+          - { label: "Catering: Hero titel", name: "catering_hero_heading", widget: "string", required: false }
+          - { label: "Catering: Titel", name: "catering_what_heading", widget: "string", required: false }
+          - { label: "Catering: Tekst", name: "catering_what_body", widget: "text", required: false }
+          - { label: "Catering: CTA titel", name: "catering_cta_heading", widget: "string", required: false }
+          - { label: "Catering: CTA tekst", name: "catering_cta_body", widget: "text", required: false }
+          - { label: "Catering: WhatsApp knop", name: "catering_cta_button", widget: "string", required: false }
+          - { label: "Catering: Notitie", name: "catering_note", widget: "string", required: false }
+          - { label: "Tuin: Hero titel", name: "garden_hero_heading", widget: "string", required: false }
+          - { label: "Tuin: Hero ondertitel", name: "garden_hero_sub", widget: "string", required: false }
+          - { label: "Tuin: Hoe het begon titel", name: "garden_origin_heading", widget: "string", required: false }
+          - { label: "Tuin: Hoe het begon tekst", name: "garden_origin_body", widget: "text", required: false }
+          - { label: "Tuin: Wat we verbouwen titel", name: "garden_grows_heading", widget: "string", required: false }
+          - { label: "Tuin: Product 1", name: "garden_item1", widget: "string", required: false }
+          - { label: "Tuin: Product 2", name: "garden_item2", widget: "string", required: false }
+          - { label: "Tuin: Product 3", name: "garden_item3", widget: "string", required: false }
+          - { label: "Tuin: Product 4", name: "garden_item4", widget: "string", required: false }
+          - { label: "Tuin: Product 5", name: "garden_item5", widget: "string", required: false }
+          - { label: "Tuin: Product 6", name: "garden_item6", widget: "string", required: false }
+          - { label: "Tuin: Product 7", name: "garden_item7", widget: "string", required: false }
+          - { label: "Tuin: Product 8", name: "garden_item8", widget: "string", required: false }
+          - { label: "Tuin: Binnenkort titel", name: "garden_coming_heading", widget: "string", required: false }
+          - { label: "Tuin: Binnenkort tekst", name: "garden_coming_body", widget: "text", required: false }
+          - { label: "Tuin: Email placeholder", name: "garden_coming_placeholder", widget: "string", required: false }
+          - { label: "Tuin: Email knop", name: "garden_coming_button", widget: "string", required: false }
+          - { label: "Tuin: Merk notitie", name: "garden_brand_note", widget: "string", required: false }
+          - { label: "Over: Hero titel", name: "about_hero_heading", widget: "string", required: false }
+          - { label: "Over: Cato naam", name: "about_cato_name", widget: "string", required: false }
+          - { label: "Over: Cato rol", name: "about_cato_role", widget: "string", required: false }
+          - { label: "Over: Cato bio", name: "about_cato_bio", widget: "text", required: false }
+          - { label: "Over: Partner naam", name: "about_wife_name", widget: "string", required: false }
+          - { label: "Over: Partner rol", name: "about_wife_role", widget: "string", required: false }
+          - { label: "Over: Partner bio", name: "about_wife_bio", widget: "text", required: false }
+          - { label: "Over: Dochter naam", name: "about_daughter_name", widget: "string", required: false }
+          - { label: "Over: Dochter rol", name: "about_daughter_role", widget: "string", required: false }
+          - { label: "Over: Dochter bio", name: "about_daughter_bio", widget: "text", required: false }
+          - { label: "Over: Verhaal titel", name: "about_story_heading", widget: "string", required: false }
+          - { label: "Over: Verhaal tekst", name: "about_story_body", widget: "text", required: false }
+          - { label: "Over: Citaat", name: "about_story_pullquote", widget: "string", required: false }
+          - { label: "Over: Reizen titel", name: "about_travel_heading", widget: "string", required: false }
+          - { label: "Over: Reizen tekst", name: "about_travel_body", widget: "text", required: false }
+          - { label: "Over: Honden titel", name: "about_dogs_heading", widget: "string", required: false }
+          - { label: "Over: Honden tekst", name: "about_dogs_body", widget: "text", required: false }
+          - { label: "Contact: Hero titel", name: "contact_hero_heading", widget: "string", required: false }
+          - { label: "Contact: Adres label", name: "contact_address_label", widget: "string", required: false }
+          - { label: "Contact: Telefoon label", name: "contact_phone_label", widget: "string", required: false }
+          - { label: "Contact: Openingstijden label", name: "contact_hours_label", widget: "string", required: false }
+          - { label: "Contact: Ma-Vr label", name: "contact_hours_monfri", widget: "string", required: false }
+          - { label: "Contact: Ma-Vr tijden", name: "contact_hours_monfri_time", widget: "string", required: false }
+          - { label: "Contact: Zaterdag label", name: "contact_hours_sat", widget: "string", required: false }
+          - { label: "Contact: Zaterdag tijden", name: "contact_hours_sat_time", widget: "string", required: false }
+          - { label: "Contact: Zondag label", name: "contact_hours_sun", widget: "string", required: false }
+          - { label: "Contact: Zondag tijden", name: "contact_hours_sun_time", widget: "string", required: false }
+          - { label: "Contact: WhatsApp knop", name: "contact_whatsapp_button", widget: "string", required: false }
+          - { label: "Contact: Instagram titel", name: "contact_instagram_heading", widget: "string", required: false }
+      - name: "en"
+        label: "English Text"
+        file: "content/en.json"
+        format: json
+        fields:
+          - { label: "Nav: Restaurant", name: "nav_restaurant", widget: "string", required: false }
+          - { label: "Nav: Catering", name: "nav_catering", widget: "string", required: false }
+          - { label: "Nav: Garden", name: "nav_garden", widget: "string", required: false }
+          - { label: "Nav: About", name: "nav_about", widget: "string", required: false }
+          - { label: "Nav: Contact", name: "nav_contact", widget: "string", required: false }
+          - { label: "Home: Location (hero)", name: "home_hero_location", widget: "string", required: false }
+          - { label: "Home: About heading", name: "home_about_heading", widget: "string", required: false }
+          - { label: "Home: About body", name: "home_about_body", widget: "text", required: false }
+          - { label: "Home: About link", name: "home_about_link", widget: "string", required: false }
+          - { label: "Home: Restaurant heading", name: "home_restaurant_heading", widget: "string", required: false }
+          - { label: "Home: Restaurant body", name: "home_restaurant_body", widget: "text", required: false }
+          - { label: "Home: Stories label", name: "home_stories_label", widget: "string", required: false }
+          - { label: "Home: Garden heading", name: "home_garden_heading", widget: "string", required: false }
+          - { label: "Home: Garden body", name: "home_garden_body", widget: "text", required: false }
+          - { label: "Home: Garden link", name: "home_garden_link", widget: "string", required: false }
+          - { label: "Restaurant: Hero heading", name: "restaurant_hero_heading", widget: "string", required: false }
+          - { label: "Restaurant: How it works label", name: "restaurant_how_label", widget: "string", required: false }
+          - { label: "Restaurant: Step 1 title", name: "restaurant_step1_title", widget: "string", required: false }
+          - { label: "Restaurant: Step 1 body", name: "restaurant_step1_body", widget: "text", required: false }
+          - { label: "Restaurant: Step 2 title", name: "restaurant_step2_title", widget: "string", required: false }
+          - { label: "Restaurant: Step 2 body", name: "restaurant_step2_body", widget: "text", required: false }
+          - { label: "Restaurant: Step 3 title", name: "restaurant_step3_title", widget: "string", required: false }
+          - { label: "Restaurant: Step 3 body", name: "restaurant_step3_body", widget: "text", required: false }
+          - { label: "Restaurant: Size small", name: "restaurant_size_small", widget: "string", required: false }
+          - { label: "Restaurant: Size medium", name: "restaurant_size_medium", widget: "string", required: false }
+          - { label: "Restaurant: Size large", name: "restaurant_size_large", widget: "string", required: false }
+          - { label: "Restaurant: Stories heading", name: "restaurant_stories_heading", widget: "string", required: false }
+          - { label: "Restaurant: Stories body", name: "restaurant_stories_body", widget: "text", required: false }
+          - { label: "Catering: Hero heading", name: "catering_hero_heading", widget: "string", required: false }
+          - { label: "Catering: Heading", name: "catering_what_heading", widget: "string", required: false }
+          - { label: "Catering: Body", name: "catering_what_body", widget: "text", required: false }
+          - { label: "Catering: CTA heading", name: "catering_cta_heading", widget: "string", required: false }
+          - { label: "Catering: CTA body", name: "catering_cta_body", widget: "text", required: false }
+          - { label: "Catering: WhatsApp button", name: "catering_cta_button", widget: "string", required: false }
+          - { label: "Catering: Note", name: "catering_note", widget: "string", required: false }
+          - { label: "Garden: Hero heading", name: "garden_hero_heading", widget: "string", required: false }
+          - { label: "Garden: Hero sub", name: "garden_hero_sub", widget: "string", required: false }
+          - { label: "Garden: Origin heading", name: "garden_origin_heading", widget: "string", required: false }
+          - { label: "Garden: Origin body", name: "garden_origin_body", widget: "text", required: false }
+          - { label: "Garden: Grows heading", name: "garden_grows_heading", widget: "string", required: false }
+          - { label: "Garden: Item 1", name: "garden_item1", widget: "string", required: false }
+          - { label: "Garden: Item 2", name: "garden_item2", widget: "string", required: false }
+          - { label: "Garden: Item 3", name: "garden_item3", widget: "string", required: false }
+          - { label: "Garden: Item 4", name: "garden_item4", widget: "string", required: false }
+          - { label: "Garden: Item 5", name: "garden_item5", widget: "string", required: false }
+          - { label: "Garden: Item 6", name: "garden_item6", widget: "string", required: false }
+          - { label: "Garden: Item 7", name: "garden_item7", widget: "string", required: false }
+          - { label: "Garden: Item 8", name: "garden_item8", widget: "string", required: false }
+          - { label: "Garden: Coming soon heading", name: "garden_coming_heading", widget: "string", required: false }
+          - { label: "Garden: Coming soon body", name: "garden_coming_body", widget: "text", required: false }
+          - { label: "Garden: Email placeholder", name: "garden_coming_placeholder", widget: "string", required: false }
+          - { label: "Garden: Email button", name: "garden_coming_button", widget: "string", required: false }
+          - { label: "Garden: Brand note", name: "garden_brand_note", widget: "string", required: false }
+          - { label: "About: Hero heading", name: "about_hero_heading", widget: "string", required: false }
+          - { label: "About: Cato name", name: "about_cato_name", widget: "string", required: false }
+          - { label: "About: Cato role", name: "about_cato_role", widget: "string", required: false }
+          - { label: "About: Cato bio", name: "about_cato_bio", widget: "text", required: false }
+          - { label: "About: Partner name", name: "about_wife_name", widget: "string", required: false }
+          - { label: "About: Partner role", name: "about_wife_role", widget: "string", required: false }
+          - { label: "About: Partner bio", name: "about_wife_bio", widget: "text", required: false }
+          - { label: "About: Daughter name", name: "about_daughter_name", widget: "string", required: false }
+          - { label: "About: Daughter role", name: "about_daughter_role", widget: "string", required: false }
+          - { label: "About: Daughter bio", name: "about_daughter_bio", widget: "text", required: false }
+          - { label: "About: Story heading", name: "about_story_heading", widget: "string", required: false }
+          - { label: "About: Story body", name: "about_story_body", widget: "text", required: false }
+          - { label: "About: Pull quote", name: "about_story_pullquote", widget: "string", required: false }
+          - { label: "About: Travel heading", name: "about_travel_heading", widget: "string", required: false }
+          - { label: "About: Travel body", name: "about_travel_body", widget: "text", required: false }
+          - { label: "About: Dogs heading", name: "about_dogs_heading", widget: "string", required: false }
+          - { label: "About: Dogs body", name: "about_dogs_body", widget: "text", required: false }
+          - { label: "Contact: Hero heading", name: "contact_hero_heading", widget: "string", required: false }
+          - { label: "Contact: Address label", name: "contact_address_label", widget: "string", required: false }
+          - { label: "Contact: Phone label", name: "contact_phone_label", widget: "string", required: false }
+          - { label: "Contact: Hours label", name: "contact_hours_label", widget: "string", required: false }
+          - { label: "Contact: Mon-Fri label", name: "contact_hours_monfri", widget: "string", required: false }
+          - { label: "Contact: Mon-Fri times", name: "contact_hours_monfri_time", widget: "string", required: false }
+          - { label: "Contact: Saturday label", name: "contact_hours_sat", widget: "string", required: false }
+          - { label: "Contact: Saturday times", name: "contact_hours_sat_time", widget: "string", required: false }
+          - { label: "Contact: Sunday label", name: "contact_hours_sun", widget: "string", required: false }
+          - { label: "Contact: Sunday times", name: "contact_hours_sun_time", widget: "string", required: false }
+          - { label: "Contact: WhatsApp button", name: "contact_whatsapp_button", widget: "string", required: false }
+          - { label: "Contact: Instagram heading", name: "contact_instagram_heading", widget: "string", required: false }
+  - name: "images"
+    label: "Fotos beheren"
+    files:
+      - name: "site_images"
+        label: "Alle fotos"
+        file: "content/images.json"
+        format: json
+        fields:
+          - { label: "Home: Achtergrond (hero)", name: "home_hero", widget: "image", required: false }
+          - { label: "Home: Familie polaroid", name: "home_familie", widget: "image", required: false }
+          - { label: "Home: Cato polaroid", name: "home_cato", widget: "image", required: false }
+          - { label: "Home: Seizoensfoto A", name: "home_seizoen_a", widget: "image", required: false }
+          - { label: "Home: Seizoensfoto B", name: "home_seizoen_b", widget: "image", required: false }
+          - { label: "Home: Tuin foto 1 (marquee)", name: "home_tuin_1", widget: "image", required: false }
+          - { label: "Home: Tuin foto 2 (marquee)", name: "home_tuin_2", widget: "image", required: false }
+          - { label: "Home: Tuin foto 3 (marquee)", name: "home_tuin_3", widget: "image", required: false }
+          - { label: "Home: Tuin foto 4 (marquee)", name: "home_tuin_4", widget: "image", required: false }
+          - { label: "Restaurant: Achtergrond (hero)", name: "restaurant_hero", widget: "image", required: false }
+          - { label: "Catering: Achtergrond (hero)", name: "catering_hero", widget: "image", required: false }
+          - { label: "Catering: Foto 1 (polaroid)", name: "catering_1", widget: "image", required: false }
+          - { label: "Catering: Foto 2 (polaroid)", name: "catering_2", widget: "image", required: false }
+          - { label: "Tuin: Achtergrond (hero)", name: "garden_hero", widget: "image", required: false }
+          - { label: "Tuin: Oorsprong foto 1", name: "garden_origin_1", widget: "image", required: false }
+          - { label: "Tuin: Oorsprong foto 2", name: "garden_origin_2", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 1", name: "garden_gallery_1", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 2", name: "garden_gallery_2", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 3", name: "garden_gallery_3", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 4", name: "garden_gallery_4", widget: "image", required: false }
+          - { label: "Over ons: Achtergrond (hero)", name: "about_hero", widget: "image", required: false }
+          - { label: "Over ons: Familie foto 1", name: "about_familie_1", widget: "image", required: false }
+          - { label: "Over ons: Familie foto 2", name: "about_familie_2", widget: "image", required: false }
+          - { label: "Over ons: Familie foto 3", name: "about_familie_3", widget: "image", required: false }
+          - { label: "Over ons: Familie foto 4", name: "about_familie_4", widget: "image", required: false }
+          - { label: "Over ons: Familie foto 5", name: "about_familie_5", widget: "image", required: false }
+          - { label: "Over ons: Hond foto 1", name: "about_hond_1", widget: "image", required: false }
+          - { label: "Over ons: Hond foto 2", name: "about_hond_2", widget: "image", required: false }

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cato by Cato — CMS</title>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    var PreviewComponent = createClass({
+      render: function() {
+        var entry = this.props.entry;
+        var get = function(key) { return entry.getIn(['data', key]) || ''; };
+
+        return h('div', { style: {
+          fontFamily: 'Georgia, serif',
+          padding: '2rem',
+          maxWidth: '700px',
+          margin: '0 auto',
+          color: '#1a1a1a',
+          lineHeight: '1.6'
+        }},
+
+          h('p', { style: { fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#888' }}, '— ' + get('home_hero_location')),
+
+          h('h1', { style: { fontSize: '2rem', margin: '0.5rem 0 1.5rem' }}, get('home_about_heading')),
+          h('p', { style: { marginBottom: '2rem' }}, get('home_about_body')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('home_restaurant_heading')),
+          h('p', { style: { marginBottom: '2rem' }}, get('home_restaurant_body')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('home_garden_heading')),
+          h('p', { style: { marginBottom: '2rem' }}, get('home_garden_body')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('restaurant_hero_heading')),
+          h('p', {}, get('restaurant_step1_title')),
+          h('p', { style: { color: '#555', fontSize: '0.9rem' }}, get('restaurant_step1_body')),
+          h('p', {}, get('restaurant_step2_title')),
+          h('p', { style: { color: '#555', fontSize: '0.9rem' }}, get('restaurant_step2_body')),
+          h('p', {}, get('restaurant_step3_title')),
+          h('p', { style: { color: '#555', fontSize: '0.9rem' }}, get('restaurant_step3_body')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('catering_hero_heading')),
+          h('p', {}, get('catering_what_body')),
+          h('p', { style: { fontStyle: 'italic', color: '#555' }}, get('catering_note')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('garden_hero_heading')),
+          h('p', { style: { color: '#888', fontStyle: 'italic' }}, get('garden_hero_sub')),
+          h('p', {}, get('garden_origin_body')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('about_hero_heading')),
+          h('p', { style: { fontWeight: 'bold' }}, get('about_cato_name') + ' — ' + get('about_cato_role')),
+          h('p', {}, get('about_cato_bio')),
+          h('p', { style: { fontStyle: 'italic', fontSize: '1.1rem', borderLeft: '3px solid #ccc', paddingLeft: '1rem' }}, get('about_story_pullquote')),
+
+          h('hr', { style: { border: 'none', borderTop: '1px solid #ddd', margin: '2rem 0' }}),
+
+          h('h2', { style: { fontSize: '1.4rem', marginBottom: '0.5rem' }}, get('contact_hero_heading')),
+          h('p', {}, get('contact_hours_monfri') + ': ' + get('contact_hours_monfri_time')),
+          h('p', {}, get('contact_hours_sat') + ': ' + get('contact_hours_sat_time')),
+          h('p', {}, get('contact_hours_sun') + ': ' + get('contact_hours_sun_time'))
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate('nl', PreviewComponent);
+    CMS.registerPreviewTemplate('en', PreviewComponent);
+  </script>
+</body>
+</html>
