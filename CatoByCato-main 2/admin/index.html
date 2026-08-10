@@ -82,6 +82,95 @@
 
     CMS.registerPreviewTemplate('nl', PreviewComponent);
     CMS.registerPreviewTemplate('en', PreviewComponent);
+
+    // Fotos beheren (images collection) — show a labeled thumbnail grid
+    // of every photo slot so it's obvious which picture you're replacing.
+    var IMAGE_FIELD_LABELS = {
+      home_hero: 'Home: achtergrond (hero)',
+      home_familie: 'Home: familie polaroid',
+      home_cato: 'Home: Cato polaroid',
+      home_seizoen_a: 'Home: seizoensfoto A',
+      home_seizoen_b: 'Home: seizoensfoto B',
+      home_tuin_1: 'Home: tuin foto 1 (marquee)',
+      home_tuin_2: 'Home: tuin foto 2 (marquee)',
+      home_tuin_3: 'Home: tuin foto 3 (marquee)',
+      home_tuin_4: 'Home: tuin foto 4 (marquee)',
+      restaurant_hero: 'Restaurant: achtergrond (hero)',
+      catering_hero: 'Catering: achtergrond (hero)',
+      catering_1: 'Catering: foto 1 (polaroid)',
+      catering_2: 'Catering: foto 2 (polaroid)',
+      garden_hero: 'Tuin: achtergrond (hero)',
+      garden_origin_1: 'Tuin: oorsprong foto 1',
+      garden_origin_2: 'Tuin: oorsprong foto 2',
+      garden_gallery_1: 'Tuin: galerij foto 1',
+      garden_gallery_2: 'Tuin: galerij foto 2',
+      garden_gallery_3: 'Tuin: galerij foto 3',
+      garden_gallery_4: 'Tuin: galerij foto 4',
+      about_hero: 'Over ons: achtergrond (hero)',
+      about_familie_1: 'Over ons: familie foto 1',
+      about_familie_2: 'Over ons: familie foto 2',
+      about_familie_3: 'Over ons: familie foto 3',
+      about_familie_4: 'Over ons: familie foto 4',
+      about_familie_5: 'Over ons: familie foto 5',
+      about_hond_1: 'Over ons: hond foto 1',
+      about_hond_2: 'Over ons: hond foto 2'
+    };
+
+    var ImagesPreviewComponent = createClass({
+      render: function() {
+        var data = this.props.entry.get('data');
+        var getAsset = this.props.getAsset;
+        var keys = data ? data.keySeq().toArray() : [];
+
+        return h('div', {
+          style: {
+            fontFamily: 'Georgia, serif',
+            padding: '1.5rem',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+            gap: '1.25rem'
+          }
+        },
+          keys.map(function(key) {
+            var value = data.get(key);
+            var label = IMAGE_FIELD_LABELS[key] || key;
+            var imgSrc = null;
+            if (value) {
+              try { imgSrc = getAsset(value).toString(); } catch (e) { imgSrc = null; }
+            }
+            return h('div', { key: key, style: { textAlign: 'center' } },
+              imgSrc
+                ? h('img', {
+                    src: imgSrc,
+                    style: {
+                      width: '100%',
+                      height: '110px',
+                      objectFit: 'cover',
+                      borderRadius: '4px',
+                      border: '1px solid #ddd',
+                      display: 'block'
+                    }
+                  })
+                : h('div', {
+                    style: {
+                      width: '100%',
+                      height: '110px',
+                      background: '#eee',
+                      borderRadius: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#999',
+                      fontSize: '0.7rem'
+                    }
+                  }, 'Geen foto'),
+              h('p', { style: { fontSize: '0.7rem', color: '#555', marginTop: '0.4rem', lineHeight: '1.3' } }, label)
+            );
+          })
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('site_images', ImagesPreviewComponent);
   </script>
 </body>
 </html>

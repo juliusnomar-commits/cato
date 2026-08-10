@@ -149,10 +149,10 @@ function applyImages() {
   }
 
   // CATERING — polaroids
-  const cateringPolaroids = document.querySelectorAll('.catering-polaroids .polaroid img');
+  const cateringPolaroids = document.querySelectorAll('.catering-what-polaroid img');
   if (cateringPolaroids.length) {
-    if (cateringPolaroids[0]) cateringPolaroids[0].src = img('catering_1', 'images/catering-1.jpg');
-    if (cateringPolaroids[1]) cateringPolaroids[1].src = img('catering_2', 'images/catering-2.jpg');
+    if (cateringPolaroids[0]) cateringPolaroids[0].src = img('catering_1', 'images/catering-gallery-1.jpg');
+    if (cateringPolaroids[1]) cateringPolaroids[1].src = img('catering_2', 'images/catering-gallery-2.jpg');
   }
 
   // GARDEN — hero
