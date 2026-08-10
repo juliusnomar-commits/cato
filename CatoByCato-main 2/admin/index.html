@@ -12,10 +12,45 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
+    // Preview templates get an `entry` whose data can arrive either as an
+    // Immutable.js Map (older Netlify/Decap CMS docs) or a plain JS object
+    // (current decap-cms-core). Normalize to a plain object so field access
+    // never throws — an uncaught error here makes Decap's preview pane
+    // render silently blank instead of showing anything.
+    function getEntryData(entry) {
+      try {
+        if (!entry) return {};
+        if (typeof entry.getIn === 'function') {
+          var viaGetIn = entry.getIn(['data']);
+          if (viaGetIn && typeof viaGetIn.toJS === 'function') return viaGetIn.toJS();
+          if (viaGetIn) return viaGetIn;
+        }
+        if (typeof entry.get === 'function') {
+          var viaGet = entry.get('data');
+          if (viaGet && typeof viaGet.toJS === 'function') return viaGet.toJS();
+          if (viaGet) return viaGet;
+        }
+        if (entry.data) return entry.data;
+      } catch (e) {
+        console.warn('CMS preview: could not read entry data', e);
+      }
+      return {};
+    }
+
+    function resolveAsset(getAsset, value) {
+      if (!value) return null;
+      try {
+        var asset = getAsset(value);
+        return asset ? asset.toString() : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
     var PreviewComponent = createClass({
       render: function() {
-        var entry = this.props.entry;
-        var get = function(key) { return entry.getIn(['data', key]) || ''; };
+        var data = getEntryData(this.props.entry);
+        var get = function(key) { return data[key] || ''; };
 
         return h('div', { style: {
           fontFamily: 'Georgia, serif',
@@ -106,6 +141,10 @@
       garden_gallery_2: 'Tuin: galerij foto 2',
       garden_gallery_3: 'Tuin: galerij foto 3',
       garden_gallery_4: 'Tuin: galerij foto 4',
+      garden_gallery_5: 'Tuin: galerij foto 5 (aardbei)',
+      garden_gallery_6: 'Tuin: galerij foto 6 (snijbiet)',
+      garden_gallery_7: 'Tuin: galerij foto 7 (lieveheersbeestje)',
+      garden_gallery_11: 'Tuin: galerij foto 8 (pepers)',
       about_hero: 'Over ons: achtergrond (hero)',
       about_familie_1: 'Over ons: familie foto 1',
       about_familie_2: 'Over ons: familie foto 2',
@@ -113,14 +152,21 @@
       about_familie_4: 'Over ons: familie foto 4',
       about_familie_5: 'Over ons: familie foto 5',
       about_hond_1: 'Over ons: hond foto 1',
-      about_hond_2: 'Over ons: hond foto 2'
+      about_hond_2: 'Over ons: hond foto 2',
+      travel_dec_2025: 'Over ons: reisfoto december 2025',
+      travel_jan_2026: 'Over ons: reisfoto januari 2026',
+      travel_feb_2026: 'Over ons: reisfoto februari 2026',
+      travel_mar_2026: 'Over ons: reisfoto maart 2026',
+      travel_apr_2026: 'Over ons: reisfoto april 2026',
+      travel_may_2026: 'Over ons: reisfoto mei 2026',
+      travel_nov_2025: 'Over ons: reisfoto november 2025'
     };
 
     var ImagesPreviewComponent = createClass({
       render: function() {
-        var data = this.props.entry.get('data');
+        var data = getEntryData(this.props.entry);
         var getAsset = this.props.getAsset;
-        var keys = data ? data.keySeq().toArray() : [];
+        var keys = Object.keys(data).length ? Object.keys(data) : Object.keys(IMAGE_FIELD_LABELS);
 
         return h('div', {
           style: {
@@ -132,12 +178,9 @@
           }
         },
           keys.map(function(key) {
-            var value = data.get(key);
+            var value = data[key];
             var label = IMAGE_FIELD_LABELS[key] || key;
-            var imgSrc = null;
-            if (value) {
-              try { imgSrc = getAsset(value).toString(); } catch (e) { imgSrc = null; }
-            }
+            var imgSrc = resolveAsset(getAsset, value);
             return h('div', { key: key, style: { textAlign: 'center' } },
               imgSrc
                 ? h('img', {
@@ -171,6 +214,43 @@
       }
     });
     CMS.registerPreviewTemplate('site_images', ImagesPreviewComponent);
+
+    // Wisselgeld bunting (currency notes list) — separate file collection.
+    var CurrencyPreviewComponent = createClass({
+      render: function() {
+        var data = getEntryData(this.props.entry);
+        var getAsset = this.props.getAsset;
+        var notes = data.notes || [];
+        return h('div', {
+          style: {
+            fontFamily: 'Georgia, serif',
+            padding: '1.5rem',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1rem'
+          }
+        },
+          notes.map(function(note, i) {
+            var imgSrc = resolveAsset(getAsset, note && note.src);
+            return imgSrc
+              ? h('img', {
+                  key: i,
+                  src: imgSrc,
+                  style: {
+                    width: '90px',
+                    height: '45px',
+                    objectFit: 'cover',
+                    borderRadius: '3px',
+                    border: '1px solid #ddd',
+                    transform: 'rotate(' + ((i % 2 === 0) ? '-4deg' : '4deg') + ')'
+                  }
+                })
+              : h('div', { key: i, style: { width: '90px', height: '45px', background: '#eee', borderRadius: '3px' } });
+          })
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('currency_notes', CurrencyPreviewComponent);
   </script>
 </body>
 </html>

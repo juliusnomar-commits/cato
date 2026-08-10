@@ -238,6 +238,10 @@ collections:
           - { label: "Tuin: Galerij foto 2", name: "garden_gallery_2", widget: "image", required: false }
           - { label: "Tuin: Galerij foto 3", name: "garden_gallery_3", widget: "image", required: false }
           - { label: "Tuin: Galerij foto 4", name: "garden_gallery_4", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 5 (aardbei)", name: "garden_gallery_5", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 6 (snijbiet)", name: "garden_gallery_6", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 7 (lieveheersbeestje)", name: "garden_gallery_7", widget: "image", required: false }
+          - { label: "Tuin: Galerij foto 8 (pepers)", name: "garden_gallery_11", widget: "image", required: false }
           - { label: "Over ons: Achtergrond (hero)", name: "about_hero", widget: "image", required: false }
           - { label: "Over ons: Familie foto 1", name: "about_familie_1", widget: "image", required: false }
           - { label: "Over ons: Familie foto 2", name: "about_familie_2", widget: "image", required: false }
@@ -246,3 +250,20 @@ collections:
           - { label: "Over ons: Familie foto 5", name: "about_familie_5", widget: "image", required: false }
           - { label: "Over ons: Hond foto 1", name: "about_hond_1", widget: "image", required: false }
           - { label: "Over ons: Hond foto 2", name: "about_hond_2", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto december 2025", name: "travel_dec_2025", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto januari 2026", name: "travel_jan_2026", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto februari 2026", name: "travel_feb_2026", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto maart 2026", name: "travel_mar_2026", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto april 2026", name: "travel_apr_2026", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto mei 2026", name: "travel_may_2026", widget: "image", required: false }
+          - { label: "Over ons: Reisfoto november 2025", name: "travel_nov_2025", widget: "image", required: false }
+      - name: "currency_notes"
+        label: "Wisselgeld bunting (decoratie)"
+        file: "content/currency.json"
+        format: json
+        fields:
+          - label: "Bankbiljetten"
+            name: "notes"
+            widget: "list"
+            hint: "De slingers met bankbiljetten die overal decoratief op de site verschijnen. Volgorde en aantal maken niet uit."
+            field: { label: "Bankbiljet", name: "src", widget: "image" }

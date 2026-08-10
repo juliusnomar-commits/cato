@@ -47,10 +47,12 @@ if (fadeSections.length) {
   fadeSections.forEach(el => observer.observe(el));
 }
 
-// ---- Currency Note Bunting — hardcoded, not editable via CMS ----
-const currencyNotes = [
+// ---- Currency Note Bunting — editable via CMS (content/currency.json) ----
+// Note: 'images/currency-dollar.png' was previously referenced here but that
+// file doesn't exist (404) — removed. Falls back to these 9 real files if
+// content/currency.json hasn't been customized yet.
+const defaultCurrencyNotes = [
   { img: 'images/currency-euro.png' },
-  { img: 'images/currency-dollar.png' },
   { img: 'images/currency-yen.png' },
   { img: 'images/currency-pound.png' },
   { img: 'images/currency-baht.png' },
@@ -60,6 +62,7 @@ const currencyNotes = [
   { img: 'images/currency-yuan.png' },
   { img: 'images/currency-real.png' },
 ];
+let currencyNotes = defaultCurrencyNotes;
 
 const buntingPaths = [
   'M0,30 Q150,60 300,35 Q450,10 600,40 Q750,70 900,38 Q1050,8 1200,32',
@@ -111,6 +114,17 @@ async function loadSiteImages() {
     if (res.ok) siteImages = await res.json();
   } catch (e) {
     console.warn('Could not load images.json, using defaults.');
+  }
+  try {
+    const res2 = await fetch('content/currency.json');
+    if (res2.ok) {
+      const data = await res2.json();
+      if (Array.isArray(data.notes) && data.notes.length) {
+        currencyNotes = data.notes.map(n => ({ img: n.src }));
+      }
+    }
+  } catch (e) {
+    console.warn('Could not load currency.json, using defaults.');
   }
 }
 
@@ -166,10 +180,12 @@ function applyImages() {
   if (originImgs[0]) originImgs[0].src = img('garden_origin_1', 'images/garden-origin.jpg');
   if (originImgs[1]) originImgs[1].src = img('garden_origin_2', 'images/garden-origin-2.jpg');
 
-  // GARDEN — gallery
+  // GARDEN — gallery (row 1 + row 2; row 3 is still "coming soon" placeholders)
   const galleryImgs = document.querySelectorAll('.garden-gallery .polaroid img');
-  ['garden_gallery_1','garden_gallery_2','garden_gallery_3','garden_gallery_4'].forEach((key, i) => {
-    if (galleryImgs[i]) galleryImgs[i].src = img(key, `images/garden-gallery-${i+1}.jpg`);
+  const galleryKeys = ['garden_gallery_1','garden_gallery_2','garden_gallery_3','garden_gallery_4','garden_gallery_5','garden_gallery_6','garden_gallery_7','garden_gallery_11'];
+  const galleryDefaults = ['images/garden-gallery-1.jpg','images/garden-gallery-2.jpg','images/garden-gallery-3.jpg','images/garden-gallery-4.jpg','images/garden-gallery-5.jpg','images/garden-gallery-6.jpg','images/garden-gallery-7.jpg','images/garden-gallery-11.jpg'];
+  galleryKeys.forEach((key, i) => {
+    if (galleryImgs[i]) galleryImgs[i].src = img(key, galleryDefaults[i]);
   });
 
   // ABOUT — hero
@@ -248,22 +264,24 @@ function renderSeasonalPolaroids() {
   });
 }
 
-// ---- Travel photos ----
+// ---- Travel photos — image editable via CMS (content/images.json), the
+// month/year/caption grid itself stays fixed in code. ----
 const travelPhotos = [
-  { month: 5, year: 2026, src: 'images/travel-may-2026.jpg',  caption_nl: 'Mei 2026',      caption_en: 'May 2026' },
-  { month: 4, year: 2026, src: 'images/travel-apr-2026.jpg',  caption_nl: 'April 2026',    caption_en: 'April 2026' },
-  { month: 3, year: 2026, src: 'images/travel-mar-2026.jpg',  caption_nl: 'Maart 2026',    caption_en: 'March 2026' },
-  { month: 2, year: 2026, src: 'images/travel-feb-2026.jpg',  caption_nl: 'Februari 2026', caption_en: 'February 2026' },
-  { month: 1, year: 2026, src: 'images/travel-jan-2026.jpg',  caption_nl: 'Januari 2026',  caption_en: 'January 2026' },
-  { month: 12, year: 2025, src: 'images/travel-dec-2025.jpg', caption_nl: 'December 2025', caption_en: 'December 2025' },
-  { month: 11, year: 2025, src: 'images/travel-nov-2025.jpg', caption_nl: 'November 2025', caption_en: 'November 2025' },
+  { key: 'travel_may_2026', month: 5, year: 2026, defaultSrc: 'images/travel-may-2026.jpg',  caption_nl: 'Mei 2026',      caption_en: 'May 2026' },
+  { key: 'travel_apr_2026', month: 4, year: 2026, defaultSrc: 'images/travel-apr-2026.jpg',  caption_nl: 'April 2026',    caption_en: 'April 2026' },
+  { key: 'travel_mar_2026', month: 3, year: 2026, defaultSrc: 'images/travel-mar-2026.jpg',  caption_nl: 'Maart 2026',    caption_en: 'March 2026' },
+  { key: 'travel_feb_2026', month: 2, year: 2026, defaultSrc: 'images/travel-feb-2026.jpg',  caption_nl: 'Februari 2026', caption_en: 'February 2026' },
+  { key: 'travel_jan_2026', month: 1, year: 2026, defaultSrc: 'images/travel-jan-2026.jpg',  caption_nl: 'Januari 2026',  caption_en: 'January 2026' },
+  { key: 'travel_dec_2025', month: 12, year: 2025, defaultSrc: 'images/travel-dec-2025.jpg', caption_nl: 'December 2025', caption_en: 'December 2025' },
+  { key: 'travel_nov_2025', month: 11, year: 2025, defaultSrc: 'images/travel-nov-2025.jpg', caption_nl: 'November 2025', caption_en: 'November 2025' },
 ];
 
 function loadTravelPhotos() {
   const outer = document.getElementById('travel-photo-container');
   if (!outer) return;
   const lang = localStorage.getItem('catobycato-lang') || 'nl';
-  const sorted = [...travelPhotos].sort((a, b) => (b.year * 12 + b.month) - (a.year * 12 + a.month));
+  const withResolvedSrc = travelPhotos.map(p => ({ ...p, src: img(p.key, p.defaultSrc) }));
+  const sorted = [...withResolvedSrc].sort((a, b) => (b.year * 12 + b.month) - (a.year * 12 + a.month));
   const makeItem = (photo) => {
     const caption = lang === 'nl' ? photo.caption_nl : photo.caption_en;
     return `<div class="polaroid travel-polaroid">
