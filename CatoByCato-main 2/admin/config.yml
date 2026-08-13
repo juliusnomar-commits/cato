@@ -30,7 +30,7 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 # Add site links in Decap CMS (optional)
 site_url: https://cato-brown.vercel.app
-media_folder: images
+media_folder: CatoByCato-main 2/images
 public_folder: images
 collections:
   - name: "content"
@@ -38,7 +38,7 @@ collections:
     files:
       - name: "nl"
         label: "Nederlandse Tekst"
-        file: "content/nl.json"
+        file: "CatoByCato-main 2/content/nl.json"
         format: json
         fields:
           - { label: "Nav: Restaurant", name: "nav_restaurant", widget: "string", required: false }
@@ -125,7 +125,7 @@ collections:
           - { label: "Contact: Instagram titel", name: "contact_instagram_heading", widget: "string", required: false }
       - name: "en"
         label: "English Text"
-        file: "content/en.json"
+        file: "CatoByCato-main 2/content/en.json"
         format: json
         fields:
           - { label: "Nav: Restaurant", name: "nav_restaurant", widget: "string", required: false }
@@ -215,7 +215,7 @@ collections:
     files:
       - name: "site_images"
         label: "Alle fotos"
-        file: "content/images.json"
+        file: "CatoByCato-main 2/content/images.json"
         format: json
         fields:
           - { label: "Home: Achtergrond (hero)", name: "home_hero", widget: "image", required: false }
@@ -259,7 +259,7 @@ collections:
           - { label: "Over ons: Reisfoto november 2025", name: "travel_nov_2025", widget: "image", required: false }
       - name: "currency_notes"
         label: "Wisselgeld bunting (decoratie)"
-        file: "content/currency.json"
+        file: "CatoByCato-main 2/content/currency.json"
         format: json
         fields:
           - label: "Bankbiljetten"
