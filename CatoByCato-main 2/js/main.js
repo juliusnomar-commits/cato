@@ -177,8 +177,8 @@ function applyImages() {
 
   // GARDEN — origin polaroids
   const originImgs = document.querySelectorAll('.garden-origin .polaroid img');
-  if (originImgs[0]) originImgs[0].src = img('garden_origin_1', 'images/garden-origin.jpg');
-  if (originImgs[1]) originImgs[1].src = img('garden_origin_2', 'images/garden-origin-2.jpg');
+  if (originImgs[0]) originImgs[0].src = img('garden_origin_1', 'images/tt-africanwoman.jpg');
+  if (originImgs[1]) originImgs[1].src = img('garden_origin_2', 'images/tt-village.jpg');
 
   // GARDEN — gallery (row 1 + row 2; row 3 is still "coming soon" placeholders)
   const galleryImgs = document.querySelectorAll('.garden-gallery .polaroid img');

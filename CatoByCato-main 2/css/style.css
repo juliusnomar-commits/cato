@@ -415,6 +415,23 @@ section {
   line-height: 1.75;
 }
 
+/* ---- Catering teaser (homepage) ---- */
+.catering-teaser {
+  background: var(--sand);
+}
+
+.catering-teaser h2 {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--teal-dark);
+  margin-bottom: 20px;
+}
+
+.catering-teaser p {
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.75;
+}
+
 /* Instagram phone mockup */
 .phone-mockup {
   width: 200px;
