@@ -48,19 +48,18 @@ if (fadeSections.length) {
 }
 
 // ---- Currency Note Bunting — editable via CMS (content/currency.json) ----
-// Note: 'images/currency-dollar.png' was previously referenced here but that
-// file doesn't exist (404) — removed. Falls back to these 9 real files if
-// content/currency.json hasn't been customized yet.
+// Real banknote photos (from ~/Desktop/bills/), replacing the previous
+// flat-icon set. Falls back to these 8 real files if content/currency.json
+// hasn't been customized yet.
 const defaultCurrencyNotes = [
-  { img: 'images/currency-euro.png' },
-  { img: 'images/currency-yen.png' },
-  { img: 'images/currency-pound.png' },
-  { img: 'images/currency-baht.png' },
-  { img: 'images/currency-rupiah.png' },
+  { img: 'images/currency-euro.jpg' },
+  { img: 'images/currency-dollar.png' },
   { img: 'images/currency-franc.png' },
-  { img: 'images/currency-rupee.png' },
-  { img: 'images/currency-yuan.png' },
-  { img: 'images/currency-real.png' },
+  { img: 'images/currency-yen.jpg' },
+  { img: 'images/currency-rand.jpg' },
+  { img: 'images/currency-baht.jpg' },
+  { img: 'images/currency-kronor.jpg' },
+  { img: 'images/currency-riyal.jpg' },
 ];
 let currencyNotes = defaultCurrencyNotes;
 
