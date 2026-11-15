@@ -125,6 +125,20 @@ async function loadSiteImages() {
   } catch (e) {
     console.warn('Could not load currency.json, using defaults.');
   }
+  try {
+    const page = location.pathname.split('/').pop().replace('.html', '') || 'home';
+    const key = page === 'index' ? 'home' : page;
+    const response = await fetch(`https://tz-digital-client-portal.vercel.app/api/live/cato/${key}`, { cache: 'no-store' });
+    if (response.ok) {
+      const live = await response.json();
+      Object.assign(siteImages, live.images || {});
+      Object.entries(live.colors || {}).forEach(([name, value]) => {
+        document.documentElement.style.setProperty(`--${name}`, value);
+      });
+    }
+  } catch (e) {
+    console.warn('Live site edits are temporarily unavailable.');
+  }
 }
 
 function img(key, fallback) {

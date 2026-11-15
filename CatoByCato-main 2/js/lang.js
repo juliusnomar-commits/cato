@@ -14,6 +14,17 @@ async function loadTranslations() {
   } catch (e) {
     console.warn('Could not load translations from CMS, using fallback.');
   }
+  try {
+    const page = location.pathname.split('/').pop().replace('.html', '') || 'home';
+    const key = page === 'index' ? 'home' : page;
+    const response = await fetch(`https://tz-digital-client-portal.vercel.app/api/live/cato/${key}`, { cache: 'no-store' });
+    if (response.ok) {
+      const live = await response.json();
+      Object.assign(translations.nl, live.changes || {});
+    }
+  } catch (e) {
+    console.warn('Live copy is temporarily unavailable.');
+  }
 }
 
 function applyTranslations(lang) {
